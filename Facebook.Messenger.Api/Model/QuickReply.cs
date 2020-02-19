@@ -53,14 +53,14 @@ namespace Facebook.Messenger.Api.Model
         /// <summary>
         /// Required if content_type is 'text'. The text to display on the quick reply button. 20 character limit.
         /// </summary>
-        [JsonProperty("title")]
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; }
 
         /// <summary>
         /// Required if content_type is 'text'. Custom data that will be sent back to you via the messaging_postbacks webhook event. 1000 character limit.
         /// May be set to an empty string if image_url is set.
         /// </summary>
-        [JsonProperty("payload")]
+        [JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
         public string Payload { get; }
 
         /// <summary>

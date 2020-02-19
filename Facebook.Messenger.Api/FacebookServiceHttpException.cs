@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Facebook.Messenger.Api.Model;
+using System;
 
-namespace Facebook.Messenger.Api.Model
+namespace Facebook.Messenger.Api
 {
     /// <summary>
 	/// An exception that is thrown when an HTTP call to the facebook api fails, including when the response
 	/// indicates an unsuccessful HTTP status code.
 	/// </summary>
-    internal class FacebookServiceHttpException : Exception
+    public class FacebookServiceHttpException : Exception
     {
         /// <summary>
         /// Error object returned by the facebook api.

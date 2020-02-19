@@ -39,19 +39,19 @@ namespace Facebook.Messenger.Api.Model
         /// <summary>
         /// This URL is opened in a mobile browser when the button is tapped. Button type must be web_url.
         /// </summary>
-        [JsonProperty("url")]
+        [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; }
 
         /// <summary>
         /// Button title. 20 character limit.
         /// </summary>
-        [JsonProperty("title")]
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; }
 
         /// <summary>
         /// This data will be sent back to your webhook. 1000 character limit. Button type must be postback
         /// </summary>
-        [JsonProperty("payload")]
+        [JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
         public string Payload { get; }
     }
 }
