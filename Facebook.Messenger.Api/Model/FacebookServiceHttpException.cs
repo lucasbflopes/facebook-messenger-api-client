@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 
 namespace Facebook.Messenger.Api.Model
 {
@@ -9,16 +8,25 @@ namespace Facebook.Messenger.Api.Model
 	/// </summary>
     internal class FacebookServiceHttpException : Exception
     {
-        public HttpStatusCode StatusCode { get; }
+        /// <summary>
+        /// Error object returned by the facebook api.
+        /// <seealso cref="https://developers.facebook.com/docs/messenger-platform/reference/send-api/error-codes"/>
+        /// </summary>
+        public Error Error { get; }
 
-        public FacebookServiceHttpException(HttpStatusCode statusCode, string message) : base(message)
+        public FacebookServiceHttpException(
+            Error error,
+            string message) : base(message)
         {
-            StatusCode = statusCode;
+            Error = error;
         }
 
-        public FacebookServiceHttpException(HttpStatusCode statusCode, string message, Exception innerException) : base(message, innerException)
+        public FacebookServiceHttpException(
+            Error error,
+            string message,
+            Exception innerException) : base(message, innerException)
         {
-            StatusCode = statusCode;
+            Error = error;
         }
     }
 }

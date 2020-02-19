@@ -2,7 +2,7 @@
 
 namespace Facebook.Messenger.Api.Model
 {
-    internal class SendMessageResponse
+    public class SendMessageResponse
     {
         /// <summary>
         /// Unique ID for the message.
