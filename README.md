@@ -20,17 +20,14 @@ var service = new FacebookService(
 # How to use
 Send text message
 ```c#
-var recipientId = "...";
 var messageId = await service.SendTextMessageAsync(recipientId, "hello from the other side!");
 ```
 Send action
 ```c#
-var recipientId = "...";
 var messageId = await service.SendActionAsync(recipientId, SenderAction.TypingOn);
 ```
 Send quick replies
 ```c#
-var recipientId = "...";
 var messageId = await service.SendQuickRepliesAsync(
   recipientId,
   "Choose one of the following:",
@@ -44,27 +41,22 @@ var messageId = await service.SendQuickRepliesAsync(
 ```
 Send audio
 ```c#
-var recipientId = "...";
 var messageId = await service.SendAudioAsync(recipientId, "https://<where-your-audio-is-hosted>");
 ```
 Send image
 ```c#
-var recipientId = "...";
 var messageId = await service.SendImageAsync(recipientId, "https://<where-your-image-is-hosted>");
 ```
 Send video
 ```c#
-var recipientId = "...";
 var messageId = await service.SendVideoAsync(recipientId, "https://<where-your-video-is-hosted>");
 ```
 Send file
 ```c#
-var recipientId = "...";
 var messageId = await service.SendFileAsync(recipientId, "https://<where-your-file-is-hosted>");
 ```
 Send buttons
 ```c#
-var recipientId = "...";
 var messageId = await service.SendButtonsAsync(
   recipientId,
   "What do you want to do?",
@@ -77,7 +69,6 @@ var messageId = await service.SendButtonsAsync(
 ```
 Send generic elements (more like cards and carousels)
 ```c#
-var recipientId = "...";
 var messageId = await service.SendGenericElementsAsync(
   recipientId,
   new[]
@@ -107,7 +98,6 @@ var messageId = await service.SendGenericElementsAsync(
 ```c#
 try
 {
-  var recipientId = "...";
   return await service.SendTextMessageAsync(recipientId, "this call will fail for some reason :(");
 }
 catch (FacebookServiceHttpException ex) when (ex.Error == null)
