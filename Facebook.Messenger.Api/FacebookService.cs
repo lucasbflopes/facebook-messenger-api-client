@@ -24,7 +24,7 @@ namespace Facebook.Messenger.Api
             _config = new FacebookServiceOptions
             {
                 ApiVersion = _defaultApiVersion,
-                Timeout = TimeSpan.FromSeconds(1)
+                Timeout = TimeSpan.FromSeconds(10)
             };
 
             options?.Invoke(_config);
