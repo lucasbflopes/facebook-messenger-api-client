@@ -21,8 +21,7 @@ namespace Facebook.Messenger.Api
         /// <param name="recipientId">Recipient of action</param>
         /// <param name="action">Action to be sent</param>
         /// <exception cref="FacebookServiceHttpException">Call failed</exception>
-        /// <returns>Message id</returns>
-        Task<string> SendActionAsync(string recipientId, SenderAction action);
+        Task SendActionAsync(string recipientId, SenderAction action);
 
         /// <summary>
         /// Sends video to recipient.

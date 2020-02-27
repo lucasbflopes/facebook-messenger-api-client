@@ -48,7 +48,7 @@ namespace Facebook.Messenger.Api
             );
         }
 
-        public Task<string> SendActionAsync(string recipientId, SenderAction action)
+        public Task SendActionAsync(string recipientId, SenderAction action)
         {
             return MakeApiCall(
                 new SendMessageRequest
