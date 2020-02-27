@@ -24,7 +24,7 @@ var messageId = await service.SendTextMessageAsync(recipientId, "hello from the 
 ```
 Send action
 ```c#
-var messageId = await service.SendActionAsync(recipientId, SenderAction.TypingOn);
+await service.SendActionAsync(recipientId, SenderAction.TypingOn);
 ```
 Send quick replies
 ```c#
