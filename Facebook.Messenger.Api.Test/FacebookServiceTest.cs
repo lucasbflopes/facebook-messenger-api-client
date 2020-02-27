@@ -37,6 +37,37 @@ namespace Facebook.Messenger.Api.Test
         }
 
         [Test]
+        public async Task ShouldMakeApiCallHonoringCustomConfigurations()
+        {
+            _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
+            var service = new FacebookService(_accessKey, config =>
+            {
+                config.ApiVersion = "v3.4";
+                config.Timeout = TimeSpan.FromMinutes(2);
+            });
+
+            await service.SendTextMessageAsync("123", "hello!");
+
+            _http
+                .ShouldHaveCalled("*/v3.4/*")
+                .With(call =>
+                    call.FlurlRequest.Settings.Timeout == TimeSpan.FromMinutes(2)
+                );
+        }
+
+        [Test]
+        public async Task ShouldMakeApiCallToFacebookCorrectly()
+        {
+            _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
+
+            await _service.SendTextMessageAsync("123", "hello!");
+
+            _http
+                .ShouldHaveCalled("https://graph.facebook.com/v*/me/messages")
+                .WithQueryParamValue("access_token", _accessKey);
+        }
+
+        [Test]
         public async Task ShouldBuildRequestToSendTextMessageCorrectly()
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
