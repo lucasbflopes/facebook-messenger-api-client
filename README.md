@@ -11,8 +11,8 @@ var service = new FacebookService(
   pageAccessToken,
   config =>
   {
-    ApiVersion = "v6.0";
-    Timeout = Timespan.FromSeconds(1);
+    config.ApiVersion = "v6.0";
+    config.Timeout = Timespan.FromSeconds(1);
   }
 );
 ```
