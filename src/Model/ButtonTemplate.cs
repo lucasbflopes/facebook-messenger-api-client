@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Facebook.Messenger.Api.Model
+namespace SendApi.Model
 {
     /// <summary>
     /// The button template sends a text message with up to three attached buttons.

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Facebook.Messenger.Api
+namespace SendApi
 {
-    public class FacebookServiceOptions
+    public class SendApiOptions
     {
         /// <summary>
         /// Api version. Example: v6.0

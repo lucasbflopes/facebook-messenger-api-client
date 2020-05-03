@@ -1,27 +1,27 @@
 ﻿using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
-using Facebook.Messenger.Api.Model;
+using SendApi.Model;
 using System;
 using System.Collections.Generic;
 
-namespace Facebook.Messenger.Api
+namespace SendApi
 {
-    public class FacebookService : IFacebookService
+    public class SendApiClient : ISendApiClient
     {
         private const string _url = "https://graph.facebook.com";
         private const string _defaultApiVersion = "v6.0";
         private readonly string _pageAccessToken;
-        private readonly FacebookServiceOptions _config;
+        private readonly SendApiOptions _config;
 
-        public FacebookService(string pageAccessToken) : this(pageAccessToken, _ => { })
+        public SendApiClient(string pageAccessToken) : this(pageAccessToken, _ => { })
         {
         }
 
-        public FacebookService(string pageAccessToken, Action<FacebookServiceOptions> options)
+        public SendApiClient(string pageAccessToken, Action<SendApiOptions> options)
         {
             _pageAccessToken = pageAccessToken;
-            _config = new FacebookServiceOptions
+            _config = new SendApiOptions
             {
                 ApiVersion = _defaultApiVersion,
                 Timeout = TimeSpan.FromSeconds(10)
@@ -199,11 +199,11 @@ namespace Facebook.Messenger.Api
             {
                 var errorResponse = await ex.GetResponseJsonAsync<SendMessageErrorResponse>();
 
-                throw new FacebookServiceHttpException(errorResponse.Error, ex.Message);
+                throw new SendApiHttpException(errorResponse.Error, ex.Message);
             }
             catch (FlurlHttpException ex)
             {
-                throw new FacebookServiceHttpException(null, ex.Message, ex.InnerException);
+                throw new SendApiHttpException(null, ex.Message, ex.InnerException);
             }
         }
     }

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Facebook.Messenger.Api.Model
+namespace SendApi.Model
 {
     /// <summary>
     /// Message tags enable sending important and personally relevant 1:1 updates to users outside the standard messaging window.

@@ -2,9 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facebook.Messenger.Api", "Facebook.Messenger.Api\Facebook.Messenger.Api.csproj", "{DC678C05-33C1-4173-AEC1-D71DAA15A5CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SendApi", "src\SendApi.csproj", "{DC678C05-33C1-4173-AEC1-D71DAA15A5CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebook.Messenger.Api.Test", "Facebook.Messenger.Api.Test\Facebook.Messenger.Api.Test.csproj", "{9F4119B6-9CB8-4DA1-8E9A-C6516CC9C042}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendApi.Test", "tests\SendApi.Test.csproj", "{9F4119B6-9CB8-4DA1-8E9A-C6516CC9C042}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Facebook.Messenger.Api.Model
+namespace SendApi.Model
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum QuickReplyContentType

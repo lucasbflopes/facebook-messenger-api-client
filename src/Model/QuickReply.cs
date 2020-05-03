@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Facebook.Messenger.Api.Model
+namespace SendApi.Model
 {
     public class QuickReply
     {

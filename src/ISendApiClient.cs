@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Facebook.Messenger.Api.Model;
+using SendApi.Model;
 
-namespace Facebook.Messenger.Api
+namespace SendApi
 {
-    public interface IFacebookService
+    public interface ISendApiClient
     {
         /// <summary>
         /// Sends text message to recipient.
         /// </summary>
         /// <param name="recipientId">Recipient of text message</param>
         /// <param name="message">Message to be sent</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         /// <returns>Message id</returns>
         Task<string> SendTextMessageAsync(string recipientId, string message);
 
@@ -20,7 +20,7 @@ namespace Facebook.Messenger.Api
         /// </summary>
         /// <param name="recipientId">Recipient of action</param>
         /// <param name="action">Action to be sent</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         Task SendActionAsync(string recipientId, SenderAction action);
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Facebook.Messenger.Api
         /// <seealso cref="https://developers.facebook.com/docs/messenger-platform/send-messages#sending_attachments"/>
         /// <param name="recipientId">Recipient of attachment</param>
         /// <param name="url">Url where file is hosted</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         /// <returns>Message id</returns>
         Task<string> SendVideoAsync(string recipientId, string url);
 
@@ -39,7 +39,7 @@ namespace Facebook.Messenger.Api
         /// <seealso cref="https://developers.facebook.com/docs/messenger-platform/send-messages#sending_attachments"/>
         /// <param name="recipientId">Recipient of attachment</param>
         /// <param name="url">Url where file is hosted</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         /// <returns>Message id</returns>
         Task<string> SendImageAsync(string recipientId, string url);
 
@@ -49,7 +49,7 @@ namespace Facebook.Messenger.Api
         /// <seealso cref="https://developers.facebook.com/docs/messenger-platform/send-messages#sending_attachments"/>
         /// <param name="recipientId">Recipient of attachment</param>
         /// <param name="url">Url where file is hosted</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         /// <returns>Message id</returns>
         Task<string> SendAudioAsync(string recipientId, string url);
 
@@ -59,7 +59,7 @@ namespace Facebook.Messenger.Api
         /// <seealso cref="https://developers.facebook.com/docs/messenger-platform/send-messages#sending_attachments"/>
         /// <param name="recipientId">Recipient of attachment</param>
         /// <param name="url">Url where file is hosted</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         /// <returns>Message id</returns>
         Task<string> SendFileAsync(string recipientId, string url);
 
@@ -70,7 +70,7 @@ namespace Facebook.Messenger.Api
         /// <param name="recipientId">Recipient of message</param>
         /// <param name="message">Text to show above quick reply buttons</param>
         /// <param name="quickReplies">List of quick replies (up to 13)</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         /// <returns>Message id</returns>
         Task<string> SendQuickRepliesAsync(string recipientId, string message, IEnumerable<QuickReply> quickReplies);
 
@@ -81,7 +81,7 @@ namespace Facebook.Messenger.Api
         /// <param name="recipientId">Recipient of message</param>
         /// <param name="message">Text to show above buttons</param>
         /// <param name="buttons">List of buttons (up to 3)</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         /// <returns>Message id</returns>
         Task<string> SendButtonsAsync(string recipientId, string message, IEnumerable<Button> buttons);
 
@@ -91,7 +91,7 @@ namespace Facebook.Messenger.Api
         /// <seealso cref="https://developers.facebook.com/docs/messenger-platform/send-messages/template/generic"/>
         /// <param name="recipientId">Recipient of message</param>
         /// <param name="elements">List of generic elements to display</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         /// <returns>Message id</returns>
         Task<string> SendGenericElementsAsync(string recipientId, IEnumerable<GenericElement> elements);
 
@@ -100,7 +100,7 @@ namespace Facebook.Messenger.Api
         /// </summary>
         /// <seealso cref="https://developers.facebook.com/docs/messenger-platform/reference/send-api/#message"/>
         /// <param name="messageRequest">Message request to be sent</param>
-        /// <exception cref="FacebookServiceHttpException">Call failed</exception>
+        /// <exception cref="SendApiHttpException">Call failed</exception>
         /// <returns>Message id</returns>
         Task<string> SendCustomMessageAsync(SendMessageRequest messageRequest);
     }

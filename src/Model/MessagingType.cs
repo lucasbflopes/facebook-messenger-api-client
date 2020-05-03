@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Facebook.Messenger.Api.Model
+namespace SendApi.Model
 {
     /// <summary>
     /// The messaging type of the message being sent.

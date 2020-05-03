@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Facebook.Messenger.Api.Model
+namespace SendApi.Model
 {
     /// <summary>
     /// Description of the message recipient. All requests must include one of the properties to identify the recipient.

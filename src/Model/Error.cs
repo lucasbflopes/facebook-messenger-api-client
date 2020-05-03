@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Facebook.Messenger.Api.Model
+namespace SendApi.Model
 {
     public class Error
     {

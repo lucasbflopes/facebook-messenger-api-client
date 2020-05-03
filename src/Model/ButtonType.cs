@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System.Runtime.Serialization;
 
-namespace Facebook.Messenger.Api.Model
+namespace SendApi.Model
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ButtonType

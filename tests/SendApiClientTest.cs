@@ -4,16 +4,16 @@ using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
 using AutoFixture;
-using Facebook.Messenger.Api.Model;
+using SendApi.Model;
 using System.Net.Http;
 
-namespace Facebook.Messenger.Api.Test
+namespace SendApi.Test
 {
-    public class FacebookServiceTest
+    public class SendApiClientTest
     {
         private HttpTest _http;
         private string _accessKey;
-        private FacebookService _service;
+        private SendApiClient _apiClient;
         private Fixture _fixture;
 
         [OneTimeSetUp]
@@ -27,7 +27,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http = new HttpTest();
             _accessKey = _fixture.Create<string>();
-            _service = new FacebookService(_accessKey);
+            _apiClient = new SendApiClient(_accessKey);
         }
 
         [TearDown]
@@ -40,7 +40,7 @@ namespace Facebook.Messenger.Api.Test
         public async Task ShouldMakeApiCallHonoringCustomConfigurations()
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
-            var service = new FacebookService(_accessKey, config =>
+            var service = new SendApiClient(_accessKey, config =>
             {
                 config.ApiVersion = "v3.4";
                 config.Timeout = TimeSpan.FromMinutes(2);
@@ -60,7 +60,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
 
-            await _service.SendTextMessageAsync("123", "hello!");
+            await _apiClient.SendTextMessageAsync("123", "hello!");
 
             _http
                 .ShouldHaveCalled("https://graph.facebook.com/v*/me/messages")
@@ -72,7 +72,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
 
-            await _service.SendTextMessageAsync("123", "Hello!");
+            await _apiClient.SendTextMessageAsync("123", "Hello!");
 
             _http
                 .ShouldHaveMadeACall()
@@ -96,7 +96,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
 
-            await _service.SendActionAsync("123", SenderAction.TypingOn);
+            await _apiClient.SendActionAsync("123", SenderAction.TypingOn);
 
             _http
                 .ShouldHaveMadeACall()
@@ -117,7 +117,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
 
-            await _service.SendQuickRepliesAsync(
+            await _apiClient.SendQuickRepliesAsync(
                 "123",
                 "message",
                 new[]
@@ -168,7 +168,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
 
-            await _service.SendImageAsync("123", "image-url");
+            await _apiClient.SendImageAsync("123", "image-url");
 
             _http
                 .ShouldHaveMadeACall()
@@ -200,7 +200,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
 
-            await _service.SendVideoAsync("123", "video-url");
+            await _apiClient.SendVideoAsync("123", "video-url");
 
             _http
                 .ShouldHaveMadeACall()
@@ -232,7 +232,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
 
-            await _service.SendAudioAsync("123", "audio-url");
+            await _apiClient.SendAudioAsync("123", "audio-url");
 
             _http
                 .ShouldHaveMadeACall()
@@ -264,7 +264,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
 
-            await _service.SendFileAsync("123", "file-url");
+            await _apiClient.SendFileAsync("123", "file-url");
 
             _http
                 .ShouldHaveMadeACall()
@@ -296,7 +296,7 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.RespondWithJson(_fixture.Create<SendMessageResponse>());
 
-            await _service.SendButtonsAsync(
+            await _apiClient.SendButtonsAsync(
                 "123",
                 "message",
                 new[]
@@ -351,11 +351,11 @@ namespace Facebook.Messenger.Api.Test
         {
             _http.SimulateTimeout();
 
-            Func<Task> action = async () => await _service.SendTextMessageAsync("123", "hello");
+            Func<Task> action = async () => await _apiClient.SendTextMessageAsync("123", "hello");
 
             action
                 .Should()
-                .Throw<FacebookServiceHttpException>()
+                .Throw<SendApiHttpException>()
                 .Where(ex => ex.Error == null);
         }
 
@@ -365,11 +365,11 @@ namespace Facebook.Messenger.Api.Test
             var error = _fixture.Create<SendMessageErrorResponse>();
             _http.RespondWithJson(error, status: 400);
 
-            Func<Task> action = async () => await _service.SendTextMessageAsync("123", "hello");
+            Func<Task> action = async () => await _apiClient.SendTextMessageAsync("123", "hello");
 
             action
                 .Should()
-                .Throw<FacebookServiceHttpException>()
+                .Throw<SendApiHttpException>()
                 .Which.Error.Should().BeEquivalentTo(error.Error);
         }
     }
