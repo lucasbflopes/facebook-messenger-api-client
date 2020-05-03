@@ -2,11 +2,11 @@
 
   <PropertyGroup>
 	  <TargetFramework>netstandard2.1</TargetFramework>
-	  <PackageId>FacebookSendAPIWrapper</PackageId>
+	  <PackageId>SendApiClient</PackageId>
 	  <Version>1.0.0</Version>
 	  <Description>Facebook Send API Wrapper for .NET</Description>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-          <PackageTags>facebook messenger api wrapper</PackageTags>
+          <PackageTags>facebook messenger sendapi wrapper</PackageTags>
 	  <Authors>Lucas Bragança</Authors>
   </PropertyGroup>
 
