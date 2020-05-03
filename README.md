@@ -2,12 +2,12 @@
 Without configuration
 ```c#
 var pageAccessToken = ".....";
-var service = new FacebookService(pageAccessToken);
+var client = new SendApiClient(pageAccessToken);
 ```
 With configuration
 ```c#
 var pageAccessToken = ".....";
-var service = new FacebookService(
+var client = new SendApiClient(
   pageAccessToken,
   config =>
   {
@@ -20,15 +20,15 @@ var service = new FacebookService(
 # How to use
 Send text message
 ```c#
-var messageId = await service.SendTextMessageAsync(recipientId, "hello from the other side!");
+var messageId = await client.SendTextMessageAsync(recipientId, "hello from the other side!");
 ```
 Send action
 ```c#
-await service.SendActionAsync(recipientId, SenderAction.TypingOn);
+await client.SendActionAsync(recipientId, SenderAction.TypingOn);
 ```
 Send quick replies
 ```c#
-var messageId = await service.SendQuickRepliesAsync(
+var messageId = await client.SendQuickRepliesAsync(
   recipientId,
   "Choose one of the following:",
   new[]
@@ -41,23 +41,23 @@ var messageId = await service.SendQuickRepliesAsync(
 ```
 Send audio
 ```c#
-var messageId = await service.SendAudioAsync(recipientId, "https://<where-your-audio-is-hosted>");
+var messageId = await client.SendAudioAsync(recipientId, "https://<where-your-audio-is-hosted>");
 ```
 Send image
 ```c#
-var messageId = await service.SendImageAsync(recipientId, "https://<where-your-image-is-hosted>");
+var messageId = await client.SendImageAsync(recipientId, "https://<where-your-image-is-hosted>");
 ```
 Send video
 ```c#
-var messageId = await service.SendVideoAsync(recipientId, "https://<where-your-video-is-hosted>");
+var messageId = await client.SendVideoAsync(recipientId, "https://<where-your-video-is-hosted>");
 ```
 Send file
 ```c#
-var messageId = await service.SendFileAsync(recipientId, "https://<where-your-file-is-hosted>");
+var messageId = await client.SendFileAsync(recipientId, "https://<where-your-file-is-hosted>");
 ```
 Send buttons
 ```c#
-var messageId = await service.SendButtonsAsync(
+var messageId = await client.SendButtonsAsync(
   recipientId,
   "What do you want to do?",
   new[]
@@ -69,7 +69,7 @@ var messageId = await service.SendButtonsAsync(
 ```
 Send generic elements (more like cards and carousels)
 ```c#
-var messageId = await service.SendGenericElementsAsync(
+var messageId = await client.SendGenericElementsAsync(
   recipientId,
   new[]
   {
@@ -98,9 +98,9 @@ var messageId = await service.SendGenericElementsAsync(
 ```c#
 try
 {
-  return await service.SendTextMessageAsync(recipientId, "this call will fail for some reason :(");
+  return await client.SendTextMessageAsync(recipientId, "this call will fail for some reason :(");
 }
-catch (FacebookServiceHttpException ex) when (ex.Error == null)
+catch (SendApiClientHttpException ex) when (ex.Error == null)
 {
   // Call failed for some reason without obtaining response from facebook (e.g. timeout, network problems, etc)
   Console.WriteLine(ex.Message);
@@ -108,7 +108,7 @@ catch (FacebookServiceHttpException ex) when (ex.Error == null)
     
   throw;
 }
-catch (FacebookServiceHttpException ex)
+catch (SendApiClientHttpException ex)
 {
   // See: https://developers.facebook.com/docs/messenger-platform/reference/send-api/error-codes
   Console.WriteLine(ex.Error.Code);
