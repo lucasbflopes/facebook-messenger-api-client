@@ -1,3 +1,7 @@
+# How to install
+
+`dotnet add package SendApiClient --version 1.0.0`
+
 # How to create api wrapper instance
 Without configuration
 ```c#
